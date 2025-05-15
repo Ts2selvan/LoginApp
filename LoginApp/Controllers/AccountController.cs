@@ -57,18 +57,29 @@ namespace LoginApp.Controllers
             int? userId = HttpContext.Session.GetInt32("UserId");
             if (userId == null) return RedirectToAction("Login");
 
-            var user = _userService.GetUser(userId.Value);
-            ViewBag.User = user;
-            ViewBag.Message = TempData["Success"];
-            ViewData["LoginTime"] = DateTime.Now.ToString();
+            //var user = _userService.GetUser(userId.Value);
+            //ViewBag.User = user;
+            //ViewBag.Message = TempData["Success"];
+            //ViewData["LoginTime"] = DateTime.Now.ToString();
 
-            return View();
+            //return View();
+
+            var profile = _userService.GetUserProfile(userId.Value);
+            return View("Profile", profile);
         }
 
         [HttpPost]
         public JsonResult CheckEmail(string email)
         {
             return Json(!_userService.IsEmailTaken(email));
+        }
+        public IActionResult Profile()
+        {
+            int? userId = HttpContext.Session.GetInt32("UserId");
+            if (userId == null) return RedirectToAction("Login");
+
+            var profile = _userService.GetUserProfile(userId.Value);
+            return View(profile);
         }
     }
 }

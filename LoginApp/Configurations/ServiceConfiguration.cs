@@ -1,4 +1,6 @@
-﻿using LoginApp.Repository;
+﻿using LoginApp.DAL.Interface;
+using LoginApp.DAL;
+using LoginApp.Repository;
 using LoginApp.Repository.Interface;
 using LoginApp.Service;
 using LoginApp.Service.Interface;
@@ -11,6 +13,7 @@ namespace LoginApp.Configurations
         {
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IUserService, UserService>();
+            services.AddScoped<IUserDal, UserDal>();
 
         }
     }

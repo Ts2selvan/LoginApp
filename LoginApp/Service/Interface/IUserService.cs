@@ -1,4 +1,5 @@
-﻿using LoginApp.Models;
+﻿using LoginApp.DTO;
+using LoginApp.Models;
 
 namespace LoginApp.Service.Interface
 {
@@ -8,5 +9,6 @@ namespace LoginApp.Service.Interface
         void RegisterUser(User user);
         User Authenticate(string email, string password);
         User GetUser(int userId);
+        UserProfileDto GetUserProfile(int userId);
     }
 }
